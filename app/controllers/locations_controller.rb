@@ -1,5 +1,9 @@
 class LocationsController < ApplicationController
 
+  def index
+    @locations = Location.all
+  end
+
   def search
     if params[:address].present?
       address = params[:address]
