@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :locations
+  resources :locations, :only => [:index]
   get 'locations/search'
 
 end
