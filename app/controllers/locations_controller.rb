@@ -14,8 +14,9 @@ class LocationsController < ApplicationController
       currentPlaceLat = Geocoder.search(address)[0].geometry["location"]["lat"]
       currentPlaceLon = Geocoder.search(address)[0].geometry["location"]["lng"]
 
-      destinationLat = 35.710063
-      destinationLon = 139.8107
+      @locations = Location.all
+      destinationLat = @locations.find(1).latitude
+      destinationLon = @locations.find(1).longitude
 
       ## 2. OSRM APIへアクセスし、結果を取得
       endpointUrl = "http://router.project-osrm.org/route/v1/driving/#{currentPlaceLon},#{currentPlaceLat};#{destinationLon},#{destinationLat}"
