@@ -15,13 +15,19 @@
 </p>
 
 <p>
-  <%= "家族の住所：#{@familyaddress}" %>
-</p>
+  <% @locations.each do |n| %>
+      <% @familyaddress = n.address %>
+      <% destinationLat = n.latitude %>
+      <% destinationLon = n.longitude %>
+      <% endpointUrl = "http://router.project-osrm.org/route/v1/driving/#{@currentPlaceLon},#{@currentPlaceLat};#{destinationLon},#{destinationLat}" %>
+      <% @response =  HTTParty.get(URI.encode(endpointUrl)) %>
+      <%= "家族の住所：#{@familyaddress}" %>
+      <p>
+      <%= "所要時間：#{@response["routes"][0]["duration"]}秒" %>
+      <%= "距離：#{@response["routes"][0]["distance"]}m" %>
+      </p>
+  <% end %>
 
-<p>
-  <%= "所要時間：#{@response["routes"][0]["duration"]}秒" %>
-  <%= "距離：#{@response["routes"][0]["distance"]}m" %>
-</p>
 
 </body>
 
