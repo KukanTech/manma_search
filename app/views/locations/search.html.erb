@@ -10,6 +10,8 @@
 
 <%= render 'form' %>
 
+<% if @locations.present? %>
+  
 <p>
   <%= "学生の住所：#{@inputaddress}" %>
 </p>
@@ -25,11 +27,10 @@
       <%= "家族の住所：#{@familyaddress}" %>
 
       <p>
-        <%= "所要時間：#{@response["routes"][0]["duration"]}秒" %>
         <%= "距離：#{@response["routes"][0]["distance"]}m" %>
       </p>
   <% end %>
-
+<% end %>
 
 </body>
 
