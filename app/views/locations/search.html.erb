@@ -12,17 +12,17 @@
 
 
 
+<% if @candidateList.present?%>
+    <% @candidateList.each do |c| %>
+        <p>
+          <%= "家族の住所: #{c[0]}" %>
+        </p>
 
-<% @candidateList.each do |c| %>
-    <p>
-      <%= "家族の住所: #{c[0]}" %>
-    </p>
-
-    <p>
-      <%= "距離: #{c[1]} km" %>
-    </p>
+        <p>
+          <%= "距離: #{c[1]} km" %>
+        </p>
+    <% end %>
 <% end %>
-
 
 </body>
 
