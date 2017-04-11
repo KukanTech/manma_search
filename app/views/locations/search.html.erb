@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>manma|admin</title>
-</head>
-
-<body>
-
 <%= render 'form' %>
-
-
-
-<% if @candidateList.present?%>
-    <% @candidateList.each do |c| %>
-        <p>
-          <%= "家族の住所: #{c[0]}" %>
-        </p>
-
-        <p>
-          <%= "距離: #{c[1]} km" %>
-        </p>
-    <% end %>
+<% if @search_result_address.present? %>
+    <p>検索地点: <%= @search_result_address %></p>
 <% end %>
 
-</body>
-
-
-</html>
+<% if @candidate_hash.present? %>
+    <table border="1">
+      <thead>
+      <tr>
+        <th></th>
+        <th>候補先</th>
+        <th>距離(km)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @candidate_hash.each_with_index do |(address, distance), index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= address %></td>
+            <td><%= distance %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
