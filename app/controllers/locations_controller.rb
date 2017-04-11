@@ -8,14 +8,11 @@ class LocationsController < ApplicationController
 
   def search
     if params[:address].present?
-      address = params[:address]
-      @inputaddress = address
+      geocoder = Geocoder.search(params[:address])
+      @search_result_address = geocoder[0].formatted_address
 
-      ## 1. 出発地点と目的地点の設定
-      @currentPlaceLat = Geocoder.search(address)[0].geometry["location"]["lat"]
-      @currentPlaceLon = Geocoder.search(address)[0].geometry["location"]["lng"]
-
-      @locations = Location.all
+      location = geocoder[0].geometry['location']
+      @candidate_hash = Location.candidate_list(location)
     end
   end
 

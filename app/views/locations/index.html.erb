@@ -1,7 +1,6 @@
+<ul>
 <% @locations.each do |f| %>
-    <p>
-      <%= f.address %>
-      <%= f.latitude %>
-      <%= f.longitude %>
-    </p>
+      <li><%= f.address %>, <%= f.latitude %>, <%= f.longitude %></li>
 <% end %>
+</ul>
+

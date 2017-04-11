@@ -1,37 +1,25 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>manma|admin</title>
-</head>
-
-<body>
-
 <%= render 'form' %>
+<% if @search_result_address.present? %>
+    <p>検索地点: <%= @search_result_address %></p>
+<% end %>
 
-<p>
-  <%= "学生の住所：#{@inputaddress}" %>
-</p>
-
-  <% @locations.each do |n| %>
-      <% @familyaddress = n.address %>
-      <% destinationLat = n.latitude %>
-      <% destinationLon = n.longitude %>
-
-      <% endpointUrl = "http://router.project-osrm.org/route/v1/driving/#{@currentPlaceLon},#{@currentPlaceLat};#{destinationLon},#{destinationLat}" %>
-      <% @response =  HTTParty.get(URI.encode(endpointUrl)) %>
-
-      <%= "家族の住所：#{@familyaddress}" %>
-
-      <p>
-        <%= "所要時間：#{@response["routes"][0]["duration"]}秒" %>
-        <%= "距離：#{@response["routes"][0]["distance"]}m" %>
-      </p>
-  <% end %>
-
-
-</body>
-
-
-</html>
+<% if @candidate_hash.present? %>
+    <table border="1">
+      <thead>
+      <tr>
+        <th></th>
+        <th>候補先</th>
+        <th>距離(km)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @candidate_hash.each_with_index do |(address, distance), index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= address %></td>
+            <td><%= distance %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
