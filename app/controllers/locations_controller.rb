@@ -6,6 +6,15 @@ class LocationsController < ApplicationController
     @locations = Location.all
   end
 
+  def new
+    @location = Location.new(location_params)
+    puts @location
+  end
+
+  def locations_params
+    params.require(:location).permit(:address)
+  end
+
   def search
     if params[:address].present?
       geocoder = Geocoder.search(params[:address])
