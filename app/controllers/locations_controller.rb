@@ -10,12 +10,10 @@ class LocationsController < ApplicationController
   def create
     location = Location.new(location_params)
     location.save
-    puts location.errors.messages
     render json: {}, status: :ok
   end
 
   def location_params
-    puts params
     params.require(:family).permit(:address)
   end
 
