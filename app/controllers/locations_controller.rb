@@ -6,13 +6,16 @@ class LocationsController < ApplicationController
     @locations = Location.all
   end
 
-  def new
-    @location = Location.new(location_params)
-    puts @location
+  def create
+    location = Location.new(location_params)
+    location.save
+    puts location.errors.messages
+    render json: {}, status: :ok
   end
 
-  def locations_params
-    params.require(:location).permit(:address)
+  def location_params
+    puts params
+    params.require(:family).permit(:address)
   end
 
   def search

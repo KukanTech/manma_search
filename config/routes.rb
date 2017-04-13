@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :locations, :only => [:index]
+  resources :locations, :only => [:index, :create]
   get 'locations/search'
-  post 'locations/new', to: 'locations#new'
 end
