@@ -1,4 +1,4 @@
-function myFunction(e) {
+function post_contents(e) {
     var itemResponses = e.response.getItemResponses();
     var address = '';
     for (var i = 0; i < itemResponses.length; i++) {
