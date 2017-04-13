@@ -1,9 +1,20 @@
 require "httparty"
 
 class LocationsController < ApplicationController
+  protect_from_forgery except: :create
 
   def index
     @locations = Location.all
+  end
+
+  def create
+    location = Location.new(location_params)
+    location.save
+    render json: {}, status: :ok
+  end
+
+  def location_params
+    params.require(:family).permit(:address)
   end
 
   def search
