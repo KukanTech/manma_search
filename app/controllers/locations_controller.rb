@@ -1,5 +1,3 @@
-require "httparty"
-
 class LocationsController < ApplicationController
   protect_from_forgery except: :create
 
